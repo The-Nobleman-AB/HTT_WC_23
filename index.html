@@ -37,6 +37,13 @@
             text-align: left;
         }
 
+	sectiona {
+            background-color: #fbf;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
         h2 {
             color: #2D036E;
         }
@@ -95,12 +102,127 @@
                 display: block;
             }
         }
+
+	.slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        img.slide-image {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            font-size: 20px;
+            color: #DF329E;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: #DF329E;
+            color: #fff;
+        }
+
+	#countdown {
+            font-size: 24px;
+            color: #2D036E;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .countdown-box {
+            margin: 0 10px;
+            padding: 10px;
+            background-color: #DF329E;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 36px;
+            width: 80px;
+            text-align: center;
+        }
+
+        @keyframes countdownAnimation {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .countdown-box {
+            animation: countdownAnimation 1s infinite;
+        }
+
     </style>
 </head>
 <body>
     <header>
         Hand Table Tennis World Cup 2023
     </header>
+
+
+    <sectiona>
+        <h2>Countdown to the Event</h2>
+        <div id="countdown">
+            <div class="countdown-box" id="days">00</div>
+            :
+            <div class="countdown-box" id="hours">00</div>
+            :
+            <div class="countdown-box" id="minutes">00</div>
+            :
+            <div class="countdown-box" id="seconds">00</div>
+        </div>
+
+        <script>
+            const countDownDate = new Date("Dec 1, 2023 00:00:00").getTime();
+
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "The event has started!";
+                }
+            }, 1000);
+        </script>
+    </sectiona>
+
 
     <section>
         <h2>About the Event</h2>
@@ -280,6 +402,62 @@
             </tr>
 	</table>
     </section>
+
+
+    <section>
+
+        <h2>Theme Slides</h2>
+        <div class="slideshow-container">
+	    <div class="mySlides">
+                <img class="slide-image" src="logo1.png" alt="Event Highlight 1">
+            </div>
+	    <div class="mySlides">
+                <img class="slide-image" src="HEAD1.png" alt="Event Highlight 2">
+            </div>
+            <div class="mySlides">
+                <img class="slide-image" src="3.png" alt="Event Highlight 3">
+            </div>
+            <div class="mySlides">
+                <img class="slide-image" src="4.png" alt="Event Highlight 4">
+            </div>
+            <div class="mySlides">
+                <img class="slide-image" src="ITOD.png" alt="Event Highlight 5">
+            </div>
+	    <div class="mySlides">
+                <img class="slide-image" src="ODODOT.png" alt="Event Highlight 6">
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </section>
+
+    <script>
+        let slideIndex = 0;
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slideIndex++;
+
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+
+            setTimeout(showSlides, 3000);
+        }
+
+        showSlides();
+    </script>
+
+
 
     <section>
         <h2>General Information</h2>
