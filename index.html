@@ -208,9 +208,54 @@
             text-decoration: underline;
         }
 
+	#preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #2D036E;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #DF329E;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #preloader.fade {
+            animation: fadeOut 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                display: none;
+            }
+        }
+
+
     </style>
 </head>
 <body>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
     <header>
         Hand Table Tennis World Cup 2023
     </header>
@@ -264,31 +309,37 @@
         <h2>Participating Teams and <re>Captains</re></h2>
         <table>
             <tr>
+		<th>Flag</th>
                 <th>Team</th>
                 <th>Captain</th>
                 <th>Pseudoname</th>
             </tr>
             <tr>
+		<td><img src="FLAG-UK.png" alt="Great Britain Flag" width="50"></td>
                 <td>GREAT BRITAIN</td>
                 <td>Anish Banerjee</td>
                 <td>Ben Stokes</td>
             </tr>
 	    <tr>
+		<td><img src="FLAG-CHN.webp" alt="China Flag" width="50"></td>
                 <td>CHINA</td>
                 <td>Spandan Das</td>
                 <td>Xon Xina</td>
             </tr>
 	    <tr>
+		<td><img src="FLAG-ARG.webp" alt="Argentina Flag" width="50"></td>
                 <td>ARGENTINA</td>
                 <td>Soham Bandyopadhyay</td>
                 <td>Lionel Messi</td>
             </tr>
 	    <tr>
+		<td><img src="FLAG-NED.png" alt="Netherlands Flag" width="50"></td>
                 <td>NETHERLANDS</td>
                 <td>Debdiptta David Majumder</td>
                 <td>Max Verstappen</td>
             </tr>
 	    <tr>
+		<td><img src="FLAG-GUA.webp" alt="Guatemala Flag" width="50"></td>
                 <td>GUATEMALA</td>
                 <td>Basil Labib</td>
                 <td>Fidel Castro</td>
@@ -438,7 +489,7 @@
 
     <section>
 
-        <h2>Theme <re>Slides</re></h2>
+        <h2>Theme <re>Slideshow</re></h2>
         <div class="slideshow-container">
 	    <div class="mySlides">
                 <img class="slide-image" src="logo1.png" alt="Event Highlight 1">
@@ -519,6 +570,15 @@
             </li>
         </ul>
     </section>
+
+
+<script>
+    window.addEventListener('load', function () {
+        var preloader = document.getElementById('preloader');
+
+        preloader.classList.add('fade');
+    });
+</script>
 
 
 </body>
